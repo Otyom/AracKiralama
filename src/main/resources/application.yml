@@ -1,0 +1,16 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost/rentacar
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+tokenAlgorithm:
+  secret-key: 157ee508f2cc97fbb2c308c71a00f8e153a80c9d94bb2d411e4c58c5ca7125f90ed289a2f387ac55f9ceeccb3fff2f0e281c5368e6c078ca38c0ca17eb5a15a0
