@@ -42,6 +42,7 @@ public class RentalCompanyService {
         RentalCompany rentalCompany=RentalCompany.builder()
                 .companyName(dto.getCompanyName())
                 .build();
+        repository.save(rentalCompany);
 
         return BaseResponseDto.builder()
                 .httpStatus(HttpStatus.OK)
