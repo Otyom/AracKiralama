@@ -9,16 +9,18 @@ import com.example.AracKiralama.entity.enums.Role;
 import com.example.AracKiralama.exception.persons.*;
 import com.example.AracKiralama.repository.IAdminRepository;
 import com.example.AracKiralama.utility.JwtTokenManeger;
+import com.example.AracKiralama.utility.ServiceManeger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class AdminService {
+public class AdminService extends ServiceManeger<Admin,Long> {
     private IAdminRepository repository;
     private JwtTokenManeger jwtTokenManeger;
     public AdminService(IAdminRepository repository,JwtTokenManeger jwtTokenManeger){
+        super(repository);
         this.repository=repository;
         this.jwtTokenManeger=jwtTokenManeger;
     }

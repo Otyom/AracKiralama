@@ -13,7 +13,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @Data
 @MappedSuperclass
-public class Person {
+public class Person extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,19 +1,18 @@
 package com.example.AracKiralama.entity;
 
+import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-
 @SuperBuilder
-@AllArgsConstructor
+@MappedSuperclass
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
-public class Customer extends Person{
-    private int b;
+public class BaseEntity {
+    String createDate;
+    String updateDate;
+    int status;
 }

@@ -13,6 +13,5 @@ import jakarta.persistence.Entity;
 @Data
 @Entity
 public class Admin extends Person{
-    private int b;
-
+ private int a;
 }

@@ -7,6 +7,7 @@ import com.example.AracKiralama.repository.IAdminRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDateTime;
 
 
 @Configuration
@@ -34,7 +35,7 @@ public class RunAndInit {
                                 .adres("1234567")
                                 .email("string")
                                 .password("string")
-                        .b(1)
+                        .createDate(LocalDateTime.now().toString())
                         .build();
                 repository.save(admin);
                 System.err.println(
