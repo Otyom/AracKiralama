@@ -18,14 +18,14 @@ public class RentalOfficeController {
     private RentalOfficeService rentalOfficeService;
 
     @GetMapping("/details/{rentalOfficeId}")
-    public ResponseEntity<GetRentalOfficeDetailResponseDto> getRentalOfficesDetails(@PathVariable Long rentalOfficeId) {
-        return ResponseEntity.ok(rentalOfficeService.getRentalOfficesDetails(rentalOfficeId));
+    public ResponseEntity<GetRentalOfficeDetailResponseDto> getRentalOfficesDetails(@RequestParam Long rentalOfficeId,String token) {
+        return ResponseEntity.ok(rentalOfficeService.getRentalOfficesDetails(rentalOfficeId,token));
     }
 
 
 
     @PostMapping("/saveRentalOffice")
-    public ResponseEntity<BaseResponseDto>saveRentalOffice(SaveRentalOfficeRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveRentalOffice(@RequestBody SaveRentalOfficeRequestDto dto){
         return ResponseEntity.ok(rentalOfficeService.saveRentalOffice(dto));
     }
 

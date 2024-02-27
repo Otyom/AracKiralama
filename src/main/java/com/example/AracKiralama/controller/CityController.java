@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.CityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class CityController {
     }
 
     @PostMapping("/saveCity")
-    public ResponseEntity<BaseResponseDto>saveCity(SaveCityRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveCity(@RequestBody SaveCityRequestDto dto){
         return ResponseEntity.ok(cityService.saveCity(dto));
     }
 

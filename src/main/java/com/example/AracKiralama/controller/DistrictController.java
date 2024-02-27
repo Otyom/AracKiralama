@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.DistrictService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class DistrictController {
     }
 
     @PostMapping("/saveDistrict")
-    public ResponseEntity<BaseResponseDto>saveDistrict(SaveDistrictRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveDistrict(@RequestBody SaveDistrictRequestDto dto){
         return ResponseEntity.ok(districtService.saveDistrict(dto));
     }
 }

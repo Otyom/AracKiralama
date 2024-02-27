@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.StreetService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class StreetController {
 
 
     @PostMapping("/saveStreet")
-    public ResponseEntity<BaseResponseDto> saveStreet(SaveStreetRequestDto dto){
+    public ResponseEntity<BaseResponseDto> saveStreet(@RequestBody SaveStreetRequestDto dto){
         return ResponseEntity.ok(streetService.saveStreet(dto));
     }
 }

@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.MarkService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class MarkController {
     }
 
     @PostMapping("/saveMark")
-    public ResponseEntity<BaseResponseDto>saveMark(SaveMarkRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveMark(@RequestBody SaveMarkRequestDto dto){
         return ResponseEntity.ok(markService.saveMark(dto));
     }
 }

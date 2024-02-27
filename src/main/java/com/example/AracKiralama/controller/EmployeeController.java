@@ -7,6 +7,7 @@ import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
 import com.example.AracKiralama.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,12 +21,12 @@ public class EmployeeController {
 
 
     @PostMapping("/saveEmployee")
-    public ResponseEntity<BaseResponseDto>saveEmployee(SaveEmployeeRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveEmployee(@RequestBody SaveEmployeeRequestDto dto){
         return ResponseEntity.ok(employeeService.saveEmployee(dto));
     }
 
     @PostMapping("/loginEmployee")
-    public ResponseEntity<LoginPersonResponseDto> loginEmployee(LoginPersonRequestDto dto){
+    public ResponseEntity<LoginPersonResponseDto> loginEmployee(@RequestBody LoginPersonRequestDto dto){
         return ResponseEntity.ok(employeeService.login(dto));
     }
 }

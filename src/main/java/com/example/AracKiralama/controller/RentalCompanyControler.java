@@ -19,7 +19,7 @@ public class RentalCompanyControler {
     }
 
     @PostMapping("/saveRentaCompany")
-    public ResponseEntity<BaseResponseDto> saveRentalCompany(SaveRentalCompanyRequestDto dto){
+    public ResponseEntity<BaseResponseDto> saveRentalCompany(@RequestBody SaveRentalCompanyRequestDto dto){
         return ResponseEntity.ok(rentalCompanyService.saveRentalCompany(dto));
     }
 }

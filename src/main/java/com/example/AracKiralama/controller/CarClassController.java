@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.CarClassService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class CarClassController {
 
 
     @PostMapping("/saveCarClass")
-    public ResponseEntity<BaseResponseDto> saveCarClass(SaveCarClassRequestDto dto){
+    public ResponseEntity<BaseResponseDto> saveCarClass(@RequestBody SaveCarClassRequestDto dto){
         return ResponseEntity.ok(carClassService.saveCarClass(dto));
     }
 }

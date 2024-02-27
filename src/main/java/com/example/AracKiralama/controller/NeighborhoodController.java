@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.service.NeigborhoodService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class NeighborhoodController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<BaseResponseDto>saveNeigborhood(SaveNeighborhoodRequestDto dto){
+    public ResponseEntity<BaseResponseDto>saveNeigborhood(@RequestBody SaveNeighborhoodRequestDto dto){
         return ResponseEntity.ok(neigborhoodService.saveNeighborhood(dto));
     }
 
