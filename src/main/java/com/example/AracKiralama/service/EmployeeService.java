@@ -84,4 +84,9 @@ public class EmployeeService {
                 .build();
     }
 
+
+    public Optional<Employee> findById(Long id) {
+        return repository.findById(id);
+    }
+
 }

@@ -7,6 +7,7 @@ import com.example.AracKiralama.entity.Admin;
 import com.example.AracKiralama.entity.rentacar.RentalCompany;
 import com.example.AracKiralama.exception.persons.AdminNotFoundException;
 import com.example.AracKiralama.exception.persons.InvaildToken;
+import com.example.AracKiralama.exception.rentacarExceptions.ExistsByCompanyNameException;
 import com.example.AracKiralama.exception.rentacarExceptions.ExistsByModelException;
 import com.example.AracKiralama.repository.IRentalCompanyRepository;
 import com.example.AracKiralama.utility.JwtTokenManeger;
@@ -37,7 +38,7 @@ public class RentalCompanyService {
         if (admin.isEmpty()) {
             throw new AdminNotFoundException();
         }
-        if (repository.existsByCompanyName(dto.getCompanyName()))throw new ExistsByModelException();
+        if (repository.existsByCompanyName(dto.getCompanyName()))throw new ExistsByCompanyNameException();
 
         RentalCompany rentalCompany=RentalCompany.builder()
                 .companyName(dto.getCompanyName())
