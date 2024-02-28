@@ -3,10 +3,13 @@ package com.example.AracKiralama.controller;
 import com.example.AracKiralama.dto.request.CarUpdateRequestDto;
 import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
+import com.example.AracKiralama.dto.response.GetAllCarByOfficeIdResponseDto;
 import com.example.AracKiralama.service.CarService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/car")
@@ -31,6 +34,11 @@ public class CarController {
     public ResponseEntity<BaseResponseDto>updateCar(CarUpdateRequestDto dto){
         return ResponseEntity.ok(carServcie.updateCar(dto));
     }
+    @GetMapping("/getCarByOfficeId")
+    public ResponseEntity<List<GetAllCarByOfficeIdResponseDto>> getCarByOfficeId(@RequestParam String token, @RequestParam Long rentalOfficeId){
+        return ResponseEntity.ok(carServcie.getAllByRentalOfficeId(token,rentalOfficeId));
+    }
+
 
 
 }

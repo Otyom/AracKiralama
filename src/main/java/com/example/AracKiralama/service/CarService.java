@@ -3,8 +3,8 @@ package com.example.AracKiralama.service;
 import com.example.AracKiralama.dto.request.CarUpdateRequestDto;
 import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
+import com.example.AracKiralama.dto.response.GetAllCarByOfficeIdResponseDto;
 import com.example.AracKiralama.entity.Admin;
-import com.example.AracKiralama.entity.Employee;
 import com.example.AracKiralama.entity.enums.Status;
 import com.example.AracKiralama.entity.rentacar.*;
 import com.example.AracKiralama.exception.rentacarExceptions.*;
@@ -16,7 +16,8 @@ import com.example.AracKiralama.utility.ServiceManeger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -142,5 +143,34 @@ public class CarService extends ServiceManeger<Car,Long> {
                 .build();
     }
 
+    public List<GetAllCarByOfficeIdResponseDto> getAllByRentalOfficeId(String token, Long RentalOfficeId){
+        Optional<Long> id = jwtTokenManeger.getIdByToken(token);
+        if (id.isEmpty()) {
+            throw new InvaildToken();
+        }
+        Optional<Admin> admin= adminService.findById(id.get());
+        if (admin.isEmpty()) {
+            throw new AdminNotFoundException();
+        }
+        List<Car>cars=repository.findByRentalOfficeId(RentalOfficeId);
+        List<GetAllCarByOfficeIdResponseDto> responseDtos=new ArrayList<>();
+        GetAllCarByOfficeIdResponseDto getAllCarByOfficeIdResponseDto=new GetAllCarByOfficeIdResponseDto();
+
+        for (Car car: cars){
+            responseDtos.add(GetAllCarByOfficeIdResponseDto.builder()
+                            .carId(car.getId())
+                            .status(car.getStatus())
+                            .fuelType(car.getFuelType())
+                            .clasId(car.getCarClass().getId())
+                            .dailyPrice(car.getDailyPrice())
+                            .color(car.getColor())
+                            .carPlate(car.getCarPlate())
+                            .markName(car.getCarMark().getMarkName())
+                            .modelName(car.getCarModel().getModelName())
+                    .build());
+
+        }
+        return responseDtos;
+    }
 
 }
