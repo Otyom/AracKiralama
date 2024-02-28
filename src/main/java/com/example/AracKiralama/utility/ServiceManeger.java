@@ -19,7 +19,6 @@ public class ServiceManeger<T extends BaseEntity,ID>implements IServiceManeger<T
     @Override
     public void save(T t) {
         t.setCreateDate(LocalDateTime.now().toString());
-        t.setUpdateDate(LocalDateTime.now().toString());
         t.setStatus(Status.ACTIVE);
         jpaRepository.save(t);
     }

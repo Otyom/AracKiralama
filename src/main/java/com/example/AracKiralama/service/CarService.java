@@ -76,7 +76,7 @@ public class CarService extends ServiceManeger<Car,Long> {
                 .fuelType(dto.getFuelType())
                 .status(Status.ACTIVE)
                 .build();
-        repository.save(car);
+        save(car);
         return BaseResponseDto.builder()
                 .message("Araba kayıt edildi")
                 .statusCode(200)
