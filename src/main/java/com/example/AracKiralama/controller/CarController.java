@@ -4,6 +4,7 @@ import com.example.AracKiralama.dto.request.CarUpdateRequestDto;
 import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.GetAllCarByOfficeIdResponseDto;
+import com.example.AracKiralama.dto.response.GetAllCarResponseDto;
 import com.example.AracKiralama.service.CarService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,11 @@ public class CarController {
     @GetMapping("/getCarByOfficeId")
     public ResponseEntity<List<GetAllCarByOfficeIdResponseDto>> getCarByOfficeId(@RequestParam String token, @RequestParam Long rentalOfficeId){
         return ResponseEntity.ok(carServcie.getAllByRentalOfficeId(token,rentalOfficeId));
+    }
+
+    @GetMapping("/getAllCar")
+    public ResponseEntity<List<GetAllCarResponseDto>> getAllCar(@RequestParam String token){
+        return ResponseEntity.ok(carServcie.getAllCar(token));
     }
 
 

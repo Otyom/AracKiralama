@@ -4,6 +4,7 @@ import com.example.AracKiralama.dto.request.CarUpdateRequestDto;
 import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.GetAllCarByOfficeIdResponseDto;
+import com.example.AracKiralama.dto.response.GetAllCarResponseDto;
 import com.example.AracKiralama.entity.Admin;
 import com.example.AracKiralama.entity.enums.Status;
 import com.example.AracKiralama.entity.rentacar.*;
@@ -171,6 +172,34 @@ public class CarService extends ServiceManeger<Car,Long> {
 
         }
         return responseDtos;
+    }
+
+    public List<GetAllCarResponseDto>getAllCar(String token){
+        Optional<Long> id = jwtTokenManeger.getIdByToken(token);
+        if (id.isEmpty()) {
+            throw new InvaildToken();
+        }
+        Optional<Admin> admin= adminService.findById(id.get());
+        if (admin.isEmpty()) {
+            throw new AdminNotFoundException();
+        }
+        List<GetAllCarResponseDto>responseDtos=new ArrayList<>();
+        for (Car car: getAll()){
+            GetAllCarResponseDto responseDto =GetAllCarResponseDto.builder()
+                    .carId(car.getId())
+                    .status(car.getStatus())
+                    .fuelType(car.getFuelType())
+                    .clasId(car.getCarClass().getId())
+                    .dailyPrice(car.getDailyPrice())
+                    .color(car.getColor())
+                    .carPlate(car.getCarPlate())
+                    .markName(car.getCarMark().getMarkName())
+                    .modelName(car.getCarModel().getModelName())
+                    .build();
+            responseDtos.add(responseDto);
+        }
+            return responseDtos;
+
     }
 
 }
