@@ -18,6 +18,6 @@ public class SaveCarRequestDto {
     private String color;
     private String carPlate;
     private FuelType fuelType;
-    private String dailyPrice;
+    private Double dailyPrice;
 
 }
