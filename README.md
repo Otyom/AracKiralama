@@ -14,4 +14,4 @@ Kullanıcılar-Admin/Çalışan/Müşteri </br>
 >
 
 # Diagrams
-![Ekran görüntüsü 2024-02-28 125345](https://github.com/Otyom/AracKiralama/assets/105221368/aa5a827d-10c5-41e1-acbe-d1d188f96dab)
+![drawSQL-image-export-2024-02-28](https://github.com/Otyom/AracKiralama/assets/105221368/8b8782a8-7b6f-4c83-ae31-4094fc3dc76c)
