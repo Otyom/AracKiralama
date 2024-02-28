@@ -23,5 +23,5 @@ public class Payment {
     private Long carId;
     private Long customerId;
     private Date paymentDate;
-    private Long disbursement;
+    private Double sum;
 }
