@@ -11,4 +11,7 @@ Kullanıcılar-Admin/Çalışan/Müşteri </br>
 -
 > [!NOTE]
 > Sistem ilk açıldığında consalda otomatik   Admin için kullanıcı mail ve şifresi verir.
+>
 
+# Diagrams
+![Ekran görüntüsü 2024-02-28 125345](https://github.com/Otyom/AracKiralama/assets/105221368/aa5a827d-10c5-41e1-acbe-d1d188f96dab)
