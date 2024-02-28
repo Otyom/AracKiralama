@@ -11,4 +11,7 @@ Kullanıcılar-Admin/Çalışan/Müşteri </br>
 -
 > [!NOTE]
 > Sistem ilk açıldığında consalda otomatik   Admin için kullanıcı mail ve şifresi verir.
+>
 
+# Diagrams
+![drawSQL-image-export-2024-02-28](https://github.com/Otyom/AracKiralama/assets/105221368/8b8782a8-7b6f-4c83-ae31-4094fc3dc76c)
