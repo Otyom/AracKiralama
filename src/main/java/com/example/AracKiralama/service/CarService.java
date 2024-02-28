@@ -5,6 +5,7 @@ import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.entity.Admin;
 import com.example.AracKiralama.entity.Employee;
+import com.example.AracKiralama.entity.enums.Status;
 import com.example.AracKiralama.entity.rentacar.*;
 import com.example.AracKiralama.exception.rentacarExceptions.*;
 import com.example.AracKiralama.exception.persons.AdminNotFoundException;
@@ -73,6 +74,7 @@ public class CarService extends ServiceManeger<Car,Long> {
                 .color(dto.getColor())
                 .dailyPrice(dto.getDailyPrice())
                 .fuelType(dto.getFuelType())
+                .status(Status.ACTIVE)
                 .build();
         repository.save(car);
         return BaseResponseDto.builder()
@@ -93,7 +95,8 @@ public class CarService extends ServiceManeger<Car,Long> {
         }
         Optional<Car>car=repository.findById(id);
         if (car.isEmpty())throw new RuntimeException();
-        deleteById(id);
+
+        delete(car.get());
 
         return BaseResponseDto.builder().message("Araba silindi").statusCode(200).build();
     }
@@ -131,7 +134,6 @@ public class CarService extends ServiceManeger<Car,Long> {
         car.get().setFuelType(dto.getFuelType());
         car.get().setRentalOffice(rentalOffice.get());
         car.get().setRentalCompany(rentalCompany.get());
-        car.get().setStatus(1);
         update(car.get());
         return BaseResponseDto.builder()
                 .statusCode(200)

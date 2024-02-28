@@ -1,5 +1,6 @@
 package com.example.AracKiralama.entity;
 
+import com.example.AracKiralama.entity.enums.Status;
 import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Data
 public class BaseEntity {
-    String createDate;
-    String updateDate;
-    int status;
+   private String createDate;
+   private String updateDate;
+   private Status status;
 }

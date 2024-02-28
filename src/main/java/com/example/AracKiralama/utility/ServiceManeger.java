@@ -1,6 +1,7 @@
 package com.example.AracKiralama.utility;
 
 import com.example.AracKiralama.entity.BaseEntity;
+import com.example.AracKiralama.entity.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -19,8 +20,8 @@ public class ServiceManeger<T extends BaseEntity,ID>implements IServiceManeger<T
     public void save(T t) {
         t.setCreateDate(LocalDateTime.now().toString());
         t.setUpdateDate(LocalDateTime.now().toString());
-        t.setStatus(0);
-        jpaRepository.delete(t);
+        t.setStatus(Status.ACTIVE);
+        jpaRepository.save(t);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class ServiceManeger<T extends BaseEntity,ID>implements IServiceManeger<T
 
     @Override
     public void delete(T t) {
-        t.setStatus(2);
+        t.setStatus(Status.DELETED);
         update(t);
     }
 
