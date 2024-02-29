@@ -77,6 +77,7 @@ public class CarService extends ServiceManeger<Car,Long> {
                 .dailyPrice(dto.getDailyPrice())
                 .fuelType(dto.getFuelType())
                 .status(Status.ACTIVE)
+                .isRental(false)
                 .build();
         save(car);
         return BaseResponseDto.builder()
@@ -97,7 +98,7 @@ public class CarService extends ServiceManeger<Car,Long> {
         }
         Optional<Car>car=repository.findById(id);
         if (car.isEmpty())throw new RuntimeException();
-
+        if (car.get().isRental())throw new CarRentedException();
         delete(car.get());
 
         return BaseResponseDto.builder().message("Araba silindi").statusCode(200).build();
@@ -136,6 +137,10 @@ public class CarService extends ServiceManeger<Car,Long> {
         car.get().setFuelType(dto.getFuelType());
         car.get().setRentalOffice(rentalOffice.get());
         car.get().setRentalCompany(rentalCompany.get());
+        car.get().setRental(dto.isRental()); if (dto.isRental()==true){
+            car.get().setStatus(Status.INACTIVE);
+        }
+        car.get().setCarPlate(dto.getCarPlate());
         update(car.get());
         return BaseResponseDto.builder()
                 .statusCode(200)
@@ -158,18 +163,19 @@ public class CarService extends ServiceManeger<Car,Long> {
         GetAllCarByOfficeIdResponseDto getAllCarByOfficeIdResponseDto=new GetAllCarByOfficeIdResponseDto();
 
         for (Car car: cars){
-            responseDtos.add(GetAllCarByOfficeIdResponseDto.builder()
-                            .carId(car.getId())
-                            .status(car.getStatus())
-                            .fuelType(car.getFuelType())
-                            .clasId(car.getCarClass().getId())
-                            .dailyPrice(car.getDailyPrice())
-                            .color(car.getColor())
-                            .carPlate(car.getCarPlate())
-                            .markName(car.getCarMark().getMarkName())
-                            .modelName(car.getCarModel().getModelName())
-                    .build());
-
+            if (!car.getStatus().equals(Status.DELETED)) {
+                responseDtos.add(GetAllCarByOfficeIdResponseDto.builder()
+                        .carId(car.getId())
+                        .status(car.getStatus())
+                        .fuelType(car.getFuelType())
+                        .clasId(car.getCarClass().getId())
+                        .dailyPrice(car.getDailyPrice())
+                        .color(car.getColor())
+                        .carPlate(car.getCarPlate())
+                        .markName(car.getCarMark().getMarkName())
+                        .modelName(car.getCarModel().getModelName())
+                        .build());
+            }
         }
         return responseDtos;
     }

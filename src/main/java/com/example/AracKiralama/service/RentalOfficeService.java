@@ -7,6 +7,7 @@ import com.example.AracKiralama.entity.Address.Street;
 import com.example.AracKiralama.entity.Admin;
 import com.example.AracKiralama.entity.rentacar.RentalCompany;
 import com.example.AracKiralama.entity.rentacar.RentalOffice;
+import com.example.AracKiralama.exception.addressExceptions.StreetNotFoundException;
 import com.example.AracKiralama.exception.persons.AdminNotFoundException;
 import com.example.AracKiralama.exception.persons.InvaildToken;
 import com.example.AracKiralama.exception.rentacarExceptions.RentalCompanyNotFoundException;
@@ -75,7 +76,7 @@ public class RentalOfficeService {
         Optional<Street> street = streetService.findById(dto.getStreetId());
         Optional<RentalCompany> rentalCompany=rentalCompanyService.findById(dto.getRentalCompanyId());
 
-        if (street.isEmpty()) throw new StreetIsEmptyException();
+        if (street.isEmpty()) throw new StreetNotFoundException();
         if (rentalCompany.isEmpty())throw new RentalCompanyNotFoundException();
         if (!(dto.getOfficeNumber().length() ==10))throw new InvalidPhoneNumberException();
 

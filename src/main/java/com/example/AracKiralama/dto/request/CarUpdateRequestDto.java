@@ -18,4 +18,5 @@ public class CarUpdateRequestDto {
     private Long rentalOfficeId;
     private Long companyId;
     private Long clasId;
+    private boolean isRental;
 }

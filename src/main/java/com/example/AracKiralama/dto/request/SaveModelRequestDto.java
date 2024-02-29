@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class SaveModelRequestDto {
     private String token;
+    private Long markId;
     private String modelName;
 }

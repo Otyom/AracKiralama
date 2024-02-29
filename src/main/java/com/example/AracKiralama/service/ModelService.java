@@ -9,6 +9,7 @@ import com.example.AracKiralama.exception.persons.AdminNotFoundException;
 import com.example.AracKiralama.exception.persons.InvaildToken;
 import com.example.AracKiralama.exception.rentacarExceptions.ExistsByClasNameException;
 import com.example.AracKiralama.exception.rentacarExceptions.ExistsByModelException;
+import com.example.AracKiralama.exception.rentacarExceptions.MarkNotFoundException;
 import com.example.AracKiralama.repository.IModelRepository;
 import com.example.AracKiralama.utility.JwtTokenManeger;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,12 @@ public class ModelService {
     private final IModelRepository repository;
     private final JwtTokenManeger jwtTokenManeger;
     private final AdminService adminService;
-    public ModelService(IModelRepository repository, JwtTokenManeger jwtTokenManeger, AdminService adminService){
+    private final MarkService markService;
+    public ModelService(IModelRepository repository, JwtTokenManeger jwtTokenManeger, AdminService adminService, MarkService markService){
         this.repository=repository;
         this.jwtTokenManeger = jwtTokenManeger;
         this.adminService = adminService;
+        this.markService = markService;
     }
 
 
@@ -38,9 +41,11 @@ public class ModelService {
             throw new AdminNotFoundException();
         }
         if (repository.existsByModelName(dto.getModelName()))throw new ExistsByModelException();
+        if (markService.findById(dto.getMarkId()).isEmpty())throw new MarkNotFoundException();
 
         Model model= Model.builder()
                 .modelName(dto.getModelName())
+                .markId(dto.getMarkId())
                 .build();
         repository.save(model);
         return BaseResponseDto.builder()

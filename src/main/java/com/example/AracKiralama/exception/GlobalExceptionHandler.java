@@ -133,6 +133,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> existsByCompanyName(ExistsByCompanyNameException existsByCompanyNameException){
         return new ResponseEntity<>(createMessage(ErrorType.EXISTS_BY_COMPANY_NAME),HttpStatus.CONFLICT);
     }
+    @ExceptionHandler(CarRentedException.class)
+    @ResponseBody
+    public ResponseEntity<ErrorMessage>carRentedException(CarRentedException carRentedException){
+        return new ResponseEntity<>(createMessage(ErrorType.CAR_RENTED_EXCEPTION),HttpStatus.BAD_REQUEST);
+    }
 
 
 

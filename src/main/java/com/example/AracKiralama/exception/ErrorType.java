@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum ErrorType {
     //NOT
     //--10001-20000 arası sayılar NOTFOUND/ISEMPTY  ----10012 verilen son rakam
-    //--20001-30000 arası sayılar geçersız hata kodları ---20002 verilen son rakam
+    //--20001-30000 arası sayılar geçersız hata kodları ---20003 verilen son rakam
     //--30001-40000 arası sayılar tekrar etme CONFIG ---30006 verilen son rakam
 
 
@@ -49,6 +49,7 @@ public enum ErrorType {
     MODEL_NOT_FOUND_EXCEPTION(10012,"Araç markası bulunmadı"),
     //ınvalid
     INVALID_PHONE_NUMBER(20001,"Geçersiz telefon numarası!"),
+    CAR_RENTED_EXCEPTION(20003,"Araç kirada"),
 
     //exists
     EXISTS_BY_CLASS_NAME(30006,"Aynı araba sınıfından mevcut"),
