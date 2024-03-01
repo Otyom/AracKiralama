@@ -47,6 +47,5 @@ public class Car extends BaseEntity {
     private String carPlate;
     private FuelType fuelType;
     private Double dailyPrice;
-    private boolean isRental;
 
 }

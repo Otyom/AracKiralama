@@ -25,18 +25,16 @@ import java.util.Optional;
 public class CarService extends ServiceManeger<Car,Long> {
     private final ICarRepository repository;
     private final AdminService adminService;
-    private final EmployeeService employeeService;
     private final RentalOfficeService rentalOfficeService;
     private final RentalCompanyService rentalCompanyService;
     private final CarClassService carClassService;
     private final MarkService markService;
     private final ModelService modelService;
     private final JwtTokenManeger jwtTokenManeger;
-    public CarService(ICarRepository repository, AdminService adminService, EmployeeService employeeService, RentalOfficeService rentalOfficeService, RentalCompanyService rentalCompanyService, CarClassService carClassService, MarkService markService, ModelService modelService, JwtTokenManeger jwtTokenManeger){
+    public CarService(ICarRepository repository, AdminService adminService, RentalOfficeService rentalOfficeService, RentalCompanyService rentalCompanyService, CarClassService carClassService, MarkService markService, ModelService modelService, JwtTokenManeger jwtTokenManeger){
         super(repository);
         this.repository=repository;
         this.adminService = adminService;
-        this.employeeService = employeeService;
         this.rentalOfficeService = rentalOfficeService;
         this.rentalCompanyService = rentalCompanyService;
         this.carClassService = carClassService;
@@ -77,7 +75,6 @@ public class CarService extends ServiceManeger<Car,Long> {
                 .dailyPrice(dto.getDailyPrice())
                 .fuelType(dto.getFuelType())
                 .status(Status.ACTIVE)
-                .isRental(false)
                 .build();
         save(car);
         return BaseResponseDto.builder()
@@ -98,7 +95,7 @@ public class CarService extends ServiceManeger<Car,Long> {
         }
         Optional<Car>car=repository.findById(id);
         if (car.isEmpty())throw new RuntimeException();
-        if (car.get().isRental())throw new CarRentedException();
+        if (car.get().getStatus()==Status.INACTIVE)throw new CarRentedException();
         delete(car.get());
 
         return BaseResponseDto.builder().message("Araba silindi").statusCode(200).build();

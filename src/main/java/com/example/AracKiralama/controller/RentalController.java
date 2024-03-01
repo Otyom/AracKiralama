@@ -1,6 +1,7 @@
 package com.example.AracKiralama.controller;
 
 
+import com.example.AracKiralama.dto.request.FinishRentalPaymentRequestDto;
 import com.example.AracKiralama.dto.request.FinishRentalRequestDto;
 import com.example.AracKiralama.dto.request.SaveRentalRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
@@ -20,8 +21,14 @@ public class RentalController {
     public ResponseEntity<BaseResponseDto>createRental(@RequestBody SaveRentalRequestDto dto){
         return ResponseEntity.ok(rentalService.createRental(dto));
     }
-    @PutMapping("/finishPayment")
-    public ResponseEntity<BaseResponseDto> finishRentalll(@RequestBody FinishRentalRequestDto dto){
+    @PutMapping("/startRental")
+    public ResponseEntity<BaseResponseDto> startRental(@RequestBody FinishRentalPaymentRequestDto dto){
+        return ResponseEntity.ok(rentalService.startRental(dto));
+    }
+
+
+    @PutMapping("/finishRental")
+    public ResponseEntity<BaseResponseDto>finishRental(@RequestBody FinishRentalRequestDto dto){
         return ResponseEntity.ok(rentalService.finishRental(dto));
     }
 }

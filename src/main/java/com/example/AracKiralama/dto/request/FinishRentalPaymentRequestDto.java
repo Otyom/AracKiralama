@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FinishRentalRequestDto {
+public class FinishRentalPaymentRequestDto {
     private String token;
     private Long customerId;
-    private Long rentalId;
-    private Long officeId;
+    private Long paymentId;
 }
