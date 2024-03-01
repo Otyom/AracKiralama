@@ -2,6 +2,7 @@ package com.example.AracKiralama.utility;
 
 import com.example.AracKiralama.entity.BaseEntity;
 import com.example.AracKiralama.entity.enums.Status;
+import com.example.AracKiralama.entity.rentacar.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.example.AracKiralama.utility;
 
-import org.springframework.stereotype.Repository;
+import com.example.AracKiralama.entity.rentacar.Rental;
 
 import java.util.List;
 import java.util.Optional;

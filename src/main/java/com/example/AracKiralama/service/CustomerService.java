@@ -1,7 +1,6 @@
 package com.example.AracKiralama.service;
 
 import com.example.AracKiralama.dto.request.LoginPersonRequestDto;
-import com.example.AracKiralama.dto.request.SaveAdminRequestDto;
 import com.example.AracKiralama.dto.request.SaveCustomerRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
@@ -66,5 +65,10 @@ public class CustomerService {
                 .statusCode(200)
                 .token(token.get())
                 .build();
+    }
+
+    public Optional<Customer> findById(Long id) {
+       Optional<Customer>customer= repository.findById(id);
+        return customer;
     }
 }

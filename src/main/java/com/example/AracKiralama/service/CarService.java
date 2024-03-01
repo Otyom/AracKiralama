@@ -137,9 +137,6 @@ public class CarService extends ServiceManeger<Car,Long> {
         car.get().setFuelType(dto.getFuelType());
         car.get().setRentalOffice(rentalOffice.get());
         car.get().setRentalCompany(rentalCompany.get());
-        car.get().setRental(dto.isRental()); if (dto.isRental()==true){
-            car.get().setStatus(Status.INACTIVE);
-        }
         car.get().setCarPlate(dto.getCarPlate());
         update(car.get());
         return BaseResponseDto.builder()
