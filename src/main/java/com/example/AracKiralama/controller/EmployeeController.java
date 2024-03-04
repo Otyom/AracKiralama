@@ -2,14 +2,12 @@ package com.example.AracKiralama.controller;
 
 import com.example.AracKiralama.dto.request.LoginPersonRequestDto;
 import com.example.AracKiralama.dto.request.SaveEmployeeRequestDto;
+import com.example.AracKiralama.dto.request.UpdatePersonRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
 import com.example.AracKiralama.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employee")
@@ -28,5 +26,10 @@ public class EmployeeController {
     @PostMapping("/loginEmployee")
     public ResponseEntity<LoginPersonResponseDto> loginEmployee(@RequestBody LoginPersonRequestDto dto){
         return ResponseEntity.ok(employeeService.login(dto));
+    }
+
+    @PutMapping("/updateEmploye")
+    public ResponseEntity<BaseResponseDto> updateEmploye(@RequestBody UpdatePersonRequestDto dto){
+        return ResponseEntity.ok(employeeService.updateEmployee(dto));
     }
 }

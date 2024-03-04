@@ -2,6 +2,7 @@ package com.example.AracKiralama.service;
 
 import com.example.AracKiralama.dto.request.LoginPersonRequestDto;
 import com.example.AracKiralama.dto.request.SaveAdminRequestDto;
+import com.example.AracKiralama.dto.request.UpdatePersonRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
 import com.example.AracKiralama.entity.Admin;
@@ -75,6 +76,29 @@ public class AdminService extends ServiceManeger<Admin,Long> {
     }
 
 
+    public BaseResponseDto updateAdmin(UpdatePersonRequestDto dto){
+        Optional<Long> id = jwtTokenManeger.getIdByToken(dto.getToken());
+        if (id.isEmpty()) {
+            throw new InvaildToken();
+        }
+        Optional<Admin> admin= repository.findById(id.get());
+        if (admin.isEmpty()) {
+            throw new AdminNotFoundException();
+        }
+
+        Optional<Admin> admin1=repository.findById(dto.getPersonId());
+        if (admin1.isEmpty()){
+            throw new  AdminNotFoundException();
+        }
+
+        admin1.get().setEmail(dto.getEmail());
+        admin1.get().setPassword(dto.getPassword());
+        admin1.get().setAdres(dto.getAdress());
+        admin1.get().setPhone(dto.getPhoneNumber());
+        save(admin1.get());
+       return BaseResponseDto.builder().httpStatus(HttpStatus.OK).statusCode(200).message("Admin bilgileri güncellendi").build();
+
+    }
 
 
     public Optional<Admin> findById(Long id) {

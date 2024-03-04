@@ -2,15 +2,13 @@ package com.example.AracKiralama.controller;
 
 import com.example.AracKiralama.dto.request.LoginPersonRequestDto;
 import com.example.AracKiralama.dto.request.SaveAdminRequestDto;
+import com.example.AracKiralama.dto.request.UpdatePersonRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
 import com.example.AracKiralama.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -28,6 +26,10 @@ public class AdminController {
         return ResponseEntity.ok(adminService.login(dto));
     }
 
+    @PutMapping("/updateAdmin")
+    public ResponseEntity<BaseResponseDto>updateAdmin(@RequestBody UpdatePersonRequestDto dto){
+        return ResponseEntity.ok(adminService.updateAdmin(dto));
+    }
 
 
 }

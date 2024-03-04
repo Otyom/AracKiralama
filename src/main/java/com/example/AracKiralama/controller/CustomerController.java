@@ -2,6 +2,8 @@ package com.example.AracKiralama.controller;
 
 import com.example.AracKiralama.dto.request.LoginPersonRequestDto;
 import com.example.AracKiralama.dto.request.SaveCustomerRequestDto;
+import com.example.AracKiralama.dto.request.UpdateCustomerRequestDto;
+import com.example.AracKiralama.dto.request.UpdatePersonRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.LoginPersonResponseDto;
 import com.example.AracKiralama.service.CustomerService;
@@ -22,8 +24,14 @@ public class CustomerController {
         return  ResponseEntity.ok(customerService.saveCustomer(dto));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginPersonResponseDto>loginAdmin(@RequestBody LoginPersonRequestDto dto){
+    @PostMapping("/loginCustomer")
+    public ResponseEntity<LoginPersonResponseDto>loginCustomer(@RequestBody LoginPersonRequestDto dto){
         return ResponseEntity.ok(customerService.login(dto));
     }
+
+    @PutMapping("/updateCustomer")
+    public ResponseEntity<BaseResponseDto>updateCustomer(@RequestBody UpdateCustomerRequestDto dto){
+        return ResponseEntity.ok(customerService.updateCustomer(dto));
+    }
+
 }

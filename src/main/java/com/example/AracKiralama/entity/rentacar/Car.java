@@ -3,7 +3,6 @@ package com.example.AracKiralama.entity.rentacar;
 import com.example.AracKiralama.entity.BaseEntity;
 import com.example.AracKiralama.entity.enums.FuelType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
