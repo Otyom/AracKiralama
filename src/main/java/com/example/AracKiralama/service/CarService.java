@@ -5,7 +5,9 @@ import com.example.AracKiralama.dto.request.SaveCarRequestDto;
 import com.example.AracKiralama.dto.response.BaseResponseDto;
 import com.example.AracKiralama.dto.response.GetAllCarByOfficeIdResponseDto;
 import com.example.AracKiralama.dto.response.GetAllCarResponseDto;
+import com.example.AracKiralama.dto.response.GetAllImageByCarIdResponseDto;
 import com.example.AracKiralama.entity.Admin;
+import com.example.AracKiralama.entity.Image;
 import com.example.AracKiralama.entity.enums.Status;
 import com.example.AracKiralama.entity.rentacar.*;
 import com.example.AracKiralama.exception.rentacarExceptions.*;
@@ -201,5 +203,8 @@ public class CarService extends ServiceManeger<Car,Long> {
             return responseDtos;
 
     }
+
+
+
 
 }

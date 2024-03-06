@@ -32,6 +32,7 @@ public class AdminService extends ServiceManeger<Admin,Long> {
         if (id.isEmpty()) {
             throw new InvaildToken();
         }
+
         Optional<Admin> admin= repository.findById(id.get());
         if (admin.isEmpty()) {
             throw new AdminNotFoundException();
@@ -89,6 +90,9 @@ public class AdminService extends ServiceManeger<Admin,Long> {
         Optional<Admin> admin1=repository.findById(dto.getPersonId());
         if (admin1.isEmpty()){
             throw new  AdminNotFoundException();
+        }
+        if (!(admin ==admin1)){
+            throw new RuntimeException();
         }
 
         admin1.get().setEmail(dto.getEmail());

@@ -1,6 +1,7 @@
 package com.example.AracKiralama.entity.rentacar;
 
 import com.example.AracKiralama.entity.BaseEntity;
+import com.example.AracKiralama.entity.Image;
 import com.example.AracKiralama.entity.enums.FuelType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,5 +47,9 @@ public class Car extends BaseEntity {
     private String carPlate;
     private FuelType fuelType;
     private Double dailyPrice;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "carId")
+    private List<Image> images;
 
 }

@@ -84,7 +84,7 @@ public class CustomerService extends ServiceManeger<Customer,Long> {
         customer.get().setPassword(dto.getPassword());
         customer.get().setAdres(dto.getAdress());
         customer.get().setPhone(dto.getPhoneNumber());
-        save(customer.get());
+        update(customer.get());
         return BaseResponseDto.builder().httpStatus(HttpStatus.OK).statusCode(200).message("Kullanıcı bilgileri güncellendi").build();
 
     }
